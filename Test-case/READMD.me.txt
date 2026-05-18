@@ -1,0 +1,126 @@
+# QA Assessment Assignment – Rewardz
+
+## Candidate Details
+**Name:** Induja S  
+**Role Applied:** QA Engineer  
+
+---
+
+# Introduction
+
+This repository contains the completed QA Assessment Assignment for the QA Engineer position at Rewardz.
+
+The assessment covers:
+- API Testing
+- Website Testing
+- Mobile Application Testing
+- AI Usage in QA
+
+The objective of this assignment is to demonstrate:
+- Manual testing skills
+- API testing knowledge
+- Test case design
+- QA thought process
+- Bug reporting
+- Practical usage of AI tools in QA workflows
+
+---
+
+# Task 1 – API Testing (Postman)
+
+## Scope Covered
+The following APIs were considered for testing:
+
+- User Login API
+- Logout API
+- Product Listing API
+- Add to Cart API
+- Remove from Cart API
+- Checkout API
+
+---
+
+## Assumptions
+- APIs accept JSON request format
+- Authentication token required after login
+- APIs return proper HTTP status codes
+- Cart operations require authenticated users
+
+---
+
+# API Test Scenarios
+
+## 1. Login API
+
+### Positive Scenarios
+- Login with valid credentials
+- Verify token generation
+- Verify response status code 200
+- Verify response time
+
+### Negative Scenarios
+- Invalid password
+- Invalid email format
+- Empty email/password fields
+- SQL Injection attempt
+- Login with inactive user
+
+---
+
+## 2. Product Listing API
+
+### Scenarios
+- Fetch product list successfully
+- Verify product details in response
+- Verify unauthorized access
+- Verify pagination
+- Verify empty product response handling
+
+---
+
+## 3. Add to Cart API
+
+### Scenarios
+- Add valid product
+- Add out-of-stock product
+- Add negative quantity
+- Add product without authentication
+- Add same product multiple times
+
+---
+
+## 4. Remove from Cart API
+
+### Scenarios
+- Remove existing item
+- Remove invalid item
+- Remove item from empty cart
+
+---
+
+## 5. Checkout API
+
+### Scenarios
+- Successful checkout
+- Checkout with empty cart
+- Invalid payment method
+- Expired session/token
+- Network interruption handling
+
+---
+
+# Sample Postman Test Script
+
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response contains token", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.token).to.exist;
+});
+
+pm.test("Response time is below 2 seconds", function () {
+    pm.expect(pm.response.responseTime).to.be.below(2000);
+});
